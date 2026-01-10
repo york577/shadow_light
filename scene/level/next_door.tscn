@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://6a5hu8nelp63"]
+
+[ext_resource type="Script" uid="uid://dv2fxpmlp6tro" path="res://scene/level/next_door.gd" id="1_w7mc1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6ub0"]
+size = Vector2(12, 91)
+
+[node name="NextDoor" type="Area2D"]
+script = ExtResource("1_w7mc1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 35.5)
+shape = SubResource("RectangleShape2D_d6ub0")

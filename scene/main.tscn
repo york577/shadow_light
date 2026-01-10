@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=3 uid="uid://txciqc6r7pqk"]
+
+[ext_resource type="Script" uid="uid://m525j6f1t3er" path="res://scene/main.gd" id="1_gfhph"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4eeeu"]
+bg_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_gfhph")
+
+[node name="ControlUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Bg" type="TextureRect" parent="ControlUI"]
+custom_minimum_size = Vector2(1600, 900)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1560.0
+offset_bottom = -860.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="RichTextLabel" parent="ControlUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085625
+anchor_top = 0.10222222
+anchor_right = 0.95281243
+anchor_bottom = 0.4988272
+theme_override_colors/font_outline_color = Color(0.9764706, 0.6392157, 0.105882354, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 188
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="TextureRect" parent="ControlUI"]
+custom_minimum_size = Vector2(280, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4175
+anchor_top = 0.534444
+anchor_right = 0.5925
+anchor_bottom = 0.97889
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="StartMenu" type="VBoxContainer" parent="ControlUI/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.160714
+anchor_top = 0.0750007
+anchor_right = 0.827381
+anchor_bottom = 0.695001
+offset_right = 0.333328
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Start" type="Button" parent="ControlUI/Panel/StartMenu"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_type_variation = &"Start"
+text = "开始游戏"
+
+[node name="Seed" type="VBoxContainer" parent="ControlUI/Panel/StartMenu"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="HBoxContainer" parent="ControlUI/Panel/StartMenu/Seed"]
+visible = false
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="ControlUI/Panel/StartMenu/Seed/MarginContainer"]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_4eeeu")
+placeholder_text = "请输入种子编码"
+draw_control_chars = true
+caret_blink = true
+
+[node name="Continue" type="Button" parent="ControlUI/Panel/StartMenu"]
+custom_minimum_size = Vector2(157, 60)
+layout_mode = 2
+theme_type_variation = &"Start"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "继续游戏"
+
+[node name="Setting" type="Button" parent="ControlUI/Panel/StartMenu"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_type_variation = &"Start"
+text = "设置"
+
+[node name="Quit" type="Button" parent="ControlUI/Panel/StartMenu"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_type_variation = &"Start"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "退出游戏"
+
+[node name="Edit" type="TextureButton" parent="ControlUI/Panel"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.80714285
+anchor_top = 0.10250074
+anchor_right = 0.94627285
+anchor_bottom = 0.20916675
+metadata/_edit_use_anchors_ = true
+
+[node name="Main" type="AudioStreamPlayer" parent="ControlUI"]
+
+[node name="Start" type="AudioStreamPlayer" parent="ControlUI"]
+
+[connection signal="pressed" from="ControlUI/Panel/StartMenu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ControlUI/Panel/StartMenu/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="ControlUI/Panel/StartMenu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="ControlUI/Panel/Edit" to="." method="_on_edit_pressed"]

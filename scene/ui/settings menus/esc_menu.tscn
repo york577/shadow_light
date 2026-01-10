@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://0n5e0ck34lws"]
+
+[ext_resource type="Script" uid="uid://w6woekuc7won" path="res://scene/ui/settings menus/esc_menu.gd" id="1_0a06q"]
+[ext_resource type="PackedScene" uid="uid://tybvetdoadke" path="res://scene/ui/settings menus/settings_menu.tscn" id="3_m7gc8"]
+
+[node name="EscMenu" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_0a06q")
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_left = -2.5265152
+anchor_top = -1.0126582
+anchor_right = -2.5265152
+anchor_bottom = -1.0126582
+offset_left = 4755.4243
+offset_top = 1265.3923
+offset_right = 4915.4243
+offset_bottom = 1451.3923
+size_flags_horizontal = 0
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Restart" type="Button" parent="Margin/VBox"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93667996, 0.27121156, 0.39705878, 1)
+theme_override_colors/font_hover_color = Color(0.9372549, 0.27058825, 0.39607844, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.9372549, 0.27058825, 0.39607844, 1)
+text = "重新开始"
+metadata/_edit_use_anchors_ = true
+
+[node name="space" type="VBoxContainer" parent="Margin/VBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ToMain" type="Button" parent="Margin/VBox"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5019608, 0.4509804, 0.6784314, 1)
+theme_override_colors/font_pressed_color = Color(0.5019608, 0.4509804, 0.6784314, 1)
+theme_override_colors/font_hover_color = Color(0.5019608, 0.4509804, 0.6784314, 1)
+text = "主菜单"
+metadata/_edit_use_anchors_ = true
+
+[node name="space2" type="VBoxContainer" parent="Margin/VBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Setting" type="Button" parent="Margin/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6313726, 0.83137256, 0.9098039, 1)
+theme_override_colors/font_pressed_color = Color(0.6313726, 0.83137256, 0.9098039, 1)
+theme_override_colors/font_hover_color = Color(0.6313726, 0.83137256, 0.9098039, 1)
+text = "设置"
+metadata/_edit_use_anchors_ = true
+
+[node name="Back" type="Button" parent="Margin/VBox"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.63748163, 0.20189857, 0.31053153, 1)
+text = "返回"
+metadata/_edit_use_anchors_ = true
+
+[node name="Settings Menu" parent="." instance=ExtResource("3_m7gc8")]
+visible = false
+
+[connection signal="pressed" from="Margin/VBox/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Margin/VBox/ToMain" to="." method="_on_to_main_pressed"]
+[connection signal="pressed" from="Margin/VBox/Setting" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Margin/VBox/Back" to="." method="_on_back_pressed"]
