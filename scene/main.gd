@@ -30,8 +30,7 @@ func _on_start_pressed() ->void:
 	_time.wait_time=0.4
 	_time.start()
 	start.play()
-	
-	
+
 func _on_setting_pressed():
 	var settings_menu=Common.find_node(PATH.KEY.SETTING)
 	if is_instance_valid(settings_menu):
@@ -39,7 +38,7 @@ func _on_setting_pressed():
 
 
 func _start_time_out():
-	SceneManager.load_scene("res://scene/level/1.tscn")
+	SceneManager.load_scene("res://scene/level/2/2.tscn")
 	_time.stop()
 	self.queue_free()
 

@@ -1,8 +1,5 @@
-extends Sprite2D
+extends Interactable
 
-
-@export var caster:LightOccluder2D
-@export var bridge:Area2D
 var moving=false
 
 var left=true
@@ -11,7 +8,7 @@ func _ready() -> void:
 	origin_pz=global_position
 
 func move_light():
-	var new_pz=Vector2(caster.global_position.x-2,global_position.y)
+	var new_pz=Vector2(origin_pz.x+400,global_position.y)
 	if moving:
 		return
 	moving=true
@@ -21,4 +18,4 @@ func move_light():
 	tween.tween_property(self,"global_position",new_pz,0.5)
 	await tween.finished
 	left=!left
-	bridge.build_bridge()
+	moving=false

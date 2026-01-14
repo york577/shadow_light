@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjv1h1urnywmu"]
+
+[ext_resource type="Texture2D" uid="uid://dgahngkm8jf6j" path="res://assets/lightz.png" id="1_fghjm"]
+[ext_resource type="Texture2D" uid="uid://brmvgkxbe3x66" path="res://assets/light.png" id="2_bp0px"]
+[ext_resource type="PackedScene" uid="uid://bbwik0v77jvdi" path="res://scene/player/player.tscn" id="3_5u11y"]
+[ext_resource type="PackedScene" uid="uid://cgnhjk2apt66q" path="res://scene/object/box.tscn" id="4_u3ux8"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bp0px"]
+cull_mode = 1
+polygon = PackedVector2Array(-16, 5, -274, -56, 97, 18, 16, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp0px"]
+size = Vector2(1572.5, 73)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.35906908, 0.35906908, 0.35906908, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(748, 441)
+shadow_enabled = true
+texture = ExtResource("2_bp0px")
+texture_scale = 3.52
+
+[node name="Sprite2D" type="Sprite2D" parent="PointLight2D"]
+texture = ExtResource("2_bp0px")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(729, 410)
+texture = ExtResource("1_fghjm")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_bp0px")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(804.75, 820.5)
+shape = SubResource("RectangleShape2D_bp0px")
+
+[node name="Player" parent="." instance=ExtResource("3_5u11y")]
+position = Vector2(297, 745)
+
+[node name="Box" parent="." instance=ExtResource("4_u3ux8")]
+position = Vector2(616, 750)

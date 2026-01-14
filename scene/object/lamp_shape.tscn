@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpbq7qg8r2pd8"]
+
+[ext_resource type="Texture2D" uid="uid://dgahngkm8jf6j" path="res://assets/lightz.png" id="1_7ydi5"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7ydi5"]
+polygon = PackedVector2Array(-14.799988, 5.6000023, -11.666672, 3, -5, -3.4285717, -4.5833435, -5.57143, 4.5833282, -5.57143, 4.5833282, -5.57143, 5, -2.5714302, 10.4166565, 1.7142868, 15.200012, 6.4000053, 12.083328, 5.1428585, -11.666672, 5.1428585)
+
+[node name="LampShape" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(362, 65)
+scale = Vector2(2.4000006, 2.333333)
+texture = ExtResource("1_7ydi5")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+scale = Vector2(0.99999994, 0.99999994)
+occluder = SubResource("OccluderPolygon2D_7ydi5")

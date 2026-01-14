@@ -11,4 +11,4 @@ func _physics_process(_delta: float) -> void:
 		return
 	var distance=player.global_position.x-global_position.x
 	if distance>0:
-		LevelMg.next_level()
+		LevelMg.next_level(LevelMg.current_level+1)

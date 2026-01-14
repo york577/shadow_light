@@ -1,4 +1,3 @@
-# SceneManager.gd - AutoLoad单例，用于管理场景切换
 extends Node
 
 # 加载场景的路径（预制场景）
@@ -15,7 +14,6 @@ func load_scene(target_scene_path: String):
 		return
 
 	current_target_path = target_scene_path
-	
 	# 启动异步加载
 	if ResourceLoader.load_threaded_request(current_target_path) != OK:
 		print("错误：启动加载失败 - " + current_target_path)

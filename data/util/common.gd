@@ -25,11 +25,10 @@ func _process(_delta: float) -> void:
 		long_press_triggered = false
 
 func _on_long_press():
-	LevelMg.reset()
-	SceneManager.load_scene("res://scene/level/1.tscn")
+	LevelMg.next_level(LevelMg.current_level)
 
 func _input(_event):
-		
+
 	#键盘监听
 	if _event is InputEventKey:
 		#键盘按键~触发 Esc菜单

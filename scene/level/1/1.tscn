@@ -1,14 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://w1yji7f3aq7i"]
+[gd_scene load_steps=20 format=3 uid="uid://w1yji7f3aq7i"]
 
 [ext_resource type="Texture2D" uid="uid://bprtxc35gv28p" path="res://assets/background.png" id="1_xwt3w"]
 [ext_resource type="Texture2D" uid="uid://csfmryry3mmqk" path="res://assets/ground1.png" id="2_dbj08"]
 [ext_resource type="PackedScene" uid="uid://6a5hu8nelp63" path="res://scene/level/next_door.tscn" id="3_b161s"]
-[ext_resource type="Texture2D" uid="uid://dgahngkm8jf6j" path="res://assets/lightz.png" id="4_33x48"]
-[ext_resource type="Script" uid="uid://5q7cymgcu70n" path="res://scene/level/1/point_light_2d.gd" id="5_v11qs"]
-[ext_resource type="Texture2D" uid="uid://brmvgkxbe3x66" path="res://assets/light.png" id="6_12skb"]
-[ext_resource type="Texture2D" uid="uid://d06wanvtfmxrh" path="res://assets/glow.png" id="7_elhhn"]
-[ext_resource type="Texture2D" uid="uid://g7e2urpxr8kd" path="res://assets/switch.png" id="8_kolfd"]
-[ext_resource type="Script" uid="uid://ctquljcdo0bv6" path="res://scene/level/switch.gd" id="9_5qkl5"]
+[ext_resource type="Texture2D" uid="uid://jb6kjpx6uetc" path="res://assets/black.png" id="5_xy4yp"]
+[ext_resource type="PackedScene" uid="uid://dypkxx7l0q4kj" path="res://scene/object/lamp.tscn" id="6_7nc31"]
+[ext_resource type="Texture2D" uid="uid://dgahngkm8jf6j" path="res://assets/lightz.png" id="7_eric7"]
 [ext_resource type="PackedScene" uid="uid://bbwik0v77jvdi" path="res://scene/player/player.tscn" id="10_44apt"]
 [ext_resource type="Script" uid="uid://b3dqkgh0ad4tw" path="res://scene/level/1/bridge.gd" id="11_861ve"]
 
@@ -27,19 +24,23 @@ size = Vector2(23, 196)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0wse"]
 size = Vector2(419, 27)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_f0wse"]
-cull_mode = 2
-polygon = PackedVector2Array(-4.8000336, -6.365387, -13.600037, 4.4557495, -312.80002, 419.478, -13.200027, 5.092285, 14.399963, 5.092285, 348.79996, 387.65112, 10.375586, 0.022972107, 4.7999725, -6.365387)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbj08"]
-size = Vector2(516, 39)
+size = Vector2(35, 39)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c88hh"]
-cull_mode = 1
-polygon = PackedVector2Array(49.99997, 47.5, 49.99997, -50, -49.30069, -50, -49.30069, 47.5)
+polygon = PackedVector2Array(51.42859, 50, 51.42859, -50, -48.571472, -50, -48.571472, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xwt3w"]
-size = Vector2(316, 41)
+size = Vector2(64, 41)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xy4yp"]
+polygon = PackedVector2Array(-32, -20, -32, 20, 32, 20, 32, -20)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3vbdb"]
+polygon = PackedVector2Array(-24, -19, -24, 20, 22, 20, 22, -19)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eric7"]
+polygon = PackedVector2Array(-2, 317, 647, 124, 655, 124, 1607, 334, 665, 134, 655, 125, 646, 125, 637, 134)
 
 [node name="1" type="Node2D"]
 
@@ -100,69 +101,38 @@ shape = SubResource("RectangleShape2D_f0wse")
 position = Vector2(1598, 614)
 player = NodePath("../../Player")
 
-[node name="LampShade" type="Sprite2D" parent="." node_paths=PackedStringArray("caster", "bridge")]
-position = Vector2(461, 121)
-scale = Vector2(2.5, 1.571)
-texture = ExtResource("4_33x48")
-script = ExtResource("5_v11qs")
-caster = NodePath("../Covers/Middle/Covering/plantform2D")
-bridge = NodePath("../bridge")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="LampShade"]
-occluder = SubResource("OccluderPolygon2D_f0wse")
-
-[node name="Light" type="PointLight2D" parent="LampShade"]
-position = Vector2(0.7999878, 12.730743)
-scale = Vector2(0.99999994, 0.99999994)
-color = Color(0.47909838, 0.57907724, 0.7629338, 1)
-shadow_enabled = true
-texture = ExtResource("6_12skb")
-
-[node name="Sprite2D" type="Sprite2D" parent="LampShade/Light"]
-position = Vector2(-0.39999676, 1.2730718)
-texture = ExtResource("7_elhhn")
-
-[node name="switch" type="Sprite2D" parent="." node_paths=PackedStringArray("player", "light")]
-position = Vector2(498, 628)
-texture = ExtResource("8_kolfd")
-script = ExtResource("9_5qkl5")
-player = NodePath("../Player")
-light = NodePath("../LampShade")
-
 [node name="Player" parent="." instance=ExtResource("10_44apt")]
 position = Vector2(73, 669)
 
 [node name="Covers" type="Node2D" parent="."]
 
 [node name="Left" type="StaticBody2D" parent="Covers"]
-position = Vector2(316, 503)
+position = Vector2(334, 503)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Covers/Left"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_dbj08")
 
 [node name="Covering2" type="Sprite2D" parent="Covers/Left"]
 light_mask = 2
-scale = Vector2(5.1400003, 0.4)
-texture = ExtResource("2_dbj08")
+scale = Vector2(0.34999996, 0.4)
+texture = ExtResource("5_xy4yp")
 
 [node name="plantform2D" type="LightOccluder2D" parent="Covers/Left/Covering2"]
 occluder = SubResource("OccluderPolygon2D_c88hh")
 
 [node name="Middle" type="StaticBody2D" parent="Covers"]
-position = Vector2(780, 398)
+position = Vector2(712, 393)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Covers/Middle"]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_xwt3w")
 
 [node name="Covering" type="Sprite2D" parent="Covers/Middle"]
 light_mask = 2
-scale = Vector2(3.1699998, 0.4)
+scale = Vector2(0.64, 0.4)
 texture = ExtResource("2_dbj08")
 
-[node name="plantform2D" type="LightOccluder2D" parent="Covers/Middle/Covering"]
-occluder = SubResource("OccluderPolygon2D_c88hh")
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Covers/Middle"]
+occluder = SubResource("OccluderPolygon2D_xy4yp")
 
 [node name="Right" type="StaticBody2D" parent="Covers"]
 position = Vector2(1286, 504)
@@ -172,11 +142,12 @@ shape = SubResource("RectangleShape2D_dbj08")
 
 [node name="Covering3" type="Sprite2D" parent="Covers/Right"]
 light_mask = 2
-scale = Vector2(5.1400003, 0.4)
+position = Vector2(-0.5000465, 0)
+scale = Vector2(0.46999893, 0.4)
 texture = ExtResource("2_dbj08")
 
-[node name="plantform2D" type="LightOccluder2D" parent="Covers/Right/Covering3"]
-occluder = SubResource("OccluderPolygon2D_c88hh")
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Covers/Right"]
+occluder = SubResource("OccluderPolygon2D_3vbdb")
 
 [node name="bridge" type="Area2D" parent="."]
 position = Vector2(796, 706)
@@ -186,3 +157,14 @@ script = ExtResource("11_861ve")
 visible = false
 position = Vector2(4, 24)
 polygon = PackedVector2Array(-39.87327, -26, -39.87327, 0, 34.73401, -1, 34.73401, -25)
+
+[node name="Lamp" parent="." instance=ExtResource("6_7nc31")]
+position = Vector2(651, 133)
+linear_damp = 0.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_eric7")
+
+[node name="LampShadow" type="Sprite2D" parent="LightOccluder2D"]
+position = Vector2(651, 129)
+texture = ExtResource("7_eric7")

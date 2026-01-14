@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgnhjk2apt66q"]
+
+[ext_resource type="Texture2D" uid="uid://csfmryry3mmqk" path="res://assets/ground1.png" id="1_y1fiv"]
+[ext_resource type="Script" uid="uid://i7kd3yd41mvt" path="res://scene/object/box.gd" id="2_t6t5c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rs4lb"]
+size = Vector2(57, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itqa6"]
+size = Vector2(50, 50)
+
+[node name="Box" type="RigidBody2D" node_paths=PackedStringArray("area")]
+script = ExtResource("2_t6t5c")
+area = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_rs4lb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_y1fiv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_itqa6")

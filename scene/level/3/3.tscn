@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://bg2rb5gn5p4dl"]
+
+[ext_resource type="Texture2D" uid="uid://bprtxc35gv28p" path="res://assets/background.png" id="1_8q20a"]
+[ext_resource type="Texture2D" uid="uid://csfmryry3mmqk" path="res://assets/ground1.png" id="2_oi2u2"]
+[ext_resource type="PackedScene" uid="uid://6a5hu8nelp63" path="res://scene/level/next_door.tscn" id="3_16nu2"]
+[ext_resource type="Texture2D" uid="uid://g7e2urpxr8kd" path="res://assets/switch.png" id="4_28y3x"]
+[ext_resource type="Script" uid="uid://cy1jvr2gsmct2" path="res://scene/level/3/switch.gd" id="5_6k7hq"]
+[ext_resource type="Texture2D" uid="uid://dgahngkm8jf6j" path="res://assets/lightz.png" id="6_cb48m"]
+[ext_resource type="PackedScene" uid="uid://bbwik0v77jvdi" path="res://scene/player/player.tscn" id="10_vspfc"]
+[ext_resource type="Script" uid="uid://i7kd3yd41mvt" path="res://scene/object/box.gd" id="11_5fbxt"]
+[ext_resource type="PackedScene" uid="uid://dypkxx7l0q4kj" path="res://scene/object/lamp.tscn" id="11_pcahp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c88hh"]
+size = Vector2(12, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twagv"]
+size = Vector2(1600.9844, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uchcr"]
+size = Vector2(50, 50)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pcahp"]
+polygon = PackedVector2Array(-15, 4, -5, -6, 5, -6, 15, 5)
+
+[node name="3" type="Node2D"]
+
+[node name="Env" type="Node2D" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Env"]
+color = Color(0.27450982, 0.27450982, 0.27450982, 1)
+
+[node name="Bg" type="Sprite2D" parent="Env"]
+position = Vector2(799, 448.00006)
+scale = Vector2(12.484375, 6.984376)
+texture = ExtResource("1_8q20a")
+
+[node name="BackDoor" type="StaticBody2D" parent="Env"]
+position = Vector2(6, 612)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/BackDoor"]
+position = Vector2(-4, 35.5)
+shape = SubResource("RectangleShape2D_c88hh")
+
+[node name="Left" type="StaticBody2D" parent="Env"]
+
+[node name="LeftGround" type="Sprite2D" parent="Env/Left"]
+position = Vector2(799, 793)
+scale = Vector2(15.940001, 1.9799997)
+texture = ExtResource("2_oi2u2")
+
+[node name="Left" type="CollisionShape2D" parent="Env/Left"]
+position = Vector2(793.5078, 700)
+shape = SubResource("RectangleShape2D_twagv")
+
+[node name="NextDoor" parent="Env" node_paths=PackedStringArray("player") instance=ExtResource("3_16nu2")]
+position = Vector2(1598, 614)
+player = NodePath("../../Player")
+
+[node name="switch" type="Sprite2D" parent="."]
+position = Vector2(498, 628)
+texture = ExtResource("4_28y3x")
+script = ExtResource("5_6k7hq")
+
+[node name="Player" parent="." instance=ExtResource("10_vspfc")]
+position = Vector2(70, 669)
+
+[node name="Box" type="CharacterBody2D" parent="." node_paths=PackedStringArray("sprite")]
+position = Vector2(562, 667)
+script = ExtResource("11_5fbxt")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_oi2u2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+shape = SubResource("RectangleShape2D_uchcr")
+
+[node name="Lamp" parent="." instance=ExtResource("11_pcahp")]
+position = Vector2(340, 131)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lamp"]
+texture = ExtResource("6_cb48m")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Lamp/Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_pcahp")
